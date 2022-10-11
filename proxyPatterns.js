@@ -1,4 +1,4 @@
-import { isValidEmail, isAllLetters } from './validator.js';
+import { isValidEmail, isAllLetters } from './helpers.js';
 
 const user = {
   firstName: 'John',
@@ -12,30 +12,29 @@ const userProxy = new Proxy(user, {
   get: (target, property) => {
     return `${new Date()} | The value of ${property} is ${target[property]}`;
   },
-  set: (target, propery, value) => {
-    if (propery === 'username') {
-      if (typeof value !== 'string') {
-        return 'value should be a string';
-      }
-
-      if (isAllLetters(value)) {
-        return 'should contain only letters';
-      }
-
-      if (!(value.length >= 3)) {
-        return 'value should be at least 3 characters long';
-      }
+  set: (target, property, value) => {
+    if (property === 'username') {
+      if (typeof value !== 'string') { console.log('value should be a string'); return true};
+      if (isAllLetters(value)) { console.log('should contain only letters'); return true}
+      if (!(value.length >= 3)) { console.log('value should be at least 3 characters long'); return true}
     }
 
-    if (propery === 'email' && !isValidEmail(value)) return 'not valid email';
-    if (propery === 'age') {
-      if (typeof value !== 'number') return 'age should be a number';
-      if (typeof value < 18) return 'age should more than 18';
+    if (property === 'email' && !isValidEmail(value)) {
+      console.log('not valid email')
+      return true;
+    };
+    if (property === 'age') {
+      if (typeof value !== 'number') { console.log('age should be a number'); return true}
+      if (value < 18) { console.log('age should more than 18'); return true }
     }
 
-    target[propery] = value;
-    return `${propery} is set to ${value}`;
+    target[property] = value;
+    console.log(`${property} is set to ${value}`);
+    return true;
   },
 });
 
-console.log(userProxy.firstName);
+userProxy.email = "daf@gmail.com"
+userProxy.age = 21
+userProxy.username = "8fsfs"
+console.log(userProxy.age)
