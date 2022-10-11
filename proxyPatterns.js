@@ -28,9 +28,8 @@ const userProxy = new Proxy(user, {
       if (value < 18) { console.log('age should more than 18'); return true }
     }
 
-    target[property] = value;
     console.log(`${property} is set to ${value}`);
-    return true;
+    return Reflect.set(target, property, value);
   },
 });
 
