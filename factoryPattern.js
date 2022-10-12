@@ -1,4 +1,4 @@
-const createBook = (title, author, isbn ) => ({
+const createBook = (title, author, isbn ) => ({ // creating a new object each time
   title,
   author,
   isbn
