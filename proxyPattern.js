@@ -10,12 +10,12 @@ const user = {
 
 const userProxy = new Proxy(user, {
   get: (target, property) => {
-    return `${new Date()} | The value of ${property} is ${target[property]}`;
+    return `${new Date()} | The value of ${property} is ${Reflect.get(target, property)}`;
   },
   set: (target, property, value) => {
     if (property === 'username') {
       if (typeof value !== 'string') { console.log('value should be a string'); return true};
-      if (isAllLetters(value)) { console.log('should contain only letters'); return true}
+      if (!isAllLetters(value)) { console.log('should contain only letters'); return true}
       if (!(value.length >= 3)) { console.log('value should be at least 3 characters long'); return true}
     }
 
@@ -33,7 +33,7 @@ const userProxy = new Proxy(user, {
   },
 });
 
-userProxy.email = "daf@gmail.com"
-userProxy.age = 21
-userProxy.username = "8fsfs"
-console.log(userProxy.age)
+// userProxy.email = "daf@gmail.com"
+// userProxy.age = 21
+userProxy.username = 12
+// console.log(userProxy.age)
