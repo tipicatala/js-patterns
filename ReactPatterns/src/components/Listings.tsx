@@ -1,5 +1,5 @@
 import React from 'react';
-import withLoader from '../hoc/withLoader';
+import withLoader from '../patterns/hoc/withLoader';
 
 import { Listing } from './List';
 import { ListingsGrid } from './ListingsGrid';
