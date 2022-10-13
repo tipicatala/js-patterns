@@ -6,6 +6,6 @@ import Listings from "./components/Listings";
 import TemperatureList from "./patterns/renderProps";
 
 export default function App() {
-  // return <Listings />;
-  return <TemperatureList />;
+  return <Listings />;
+  // return <TemperatureList />;
 }

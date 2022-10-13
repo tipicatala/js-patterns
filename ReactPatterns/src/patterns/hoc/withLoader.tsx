@@ -1,11 +1,12 @@
 import React from "react";
-import useSWR from "swr";
+import { useData } from '../hook/useData';
 
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 
 export default function withLoader(Element, url) {
   return (props) => {
-    const { data } = useSWR(url, (link) => fetch(link).then((res) => res.json()));
+    const [data] = useData(url);
+
     return data ? <Element {...props} data={data.listings} /> : <LoadingSpinner />;
   };
 }
