@@ -2,7 +2,7 @@ import React from 'react';
 import { useDataContext } from '../patterns/hook/useDataContext';
 
 export default function Input(props) {
-  const { listingData } = useDataContext();
+  const listingData = useDataContext();
 
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
