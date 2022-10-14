@@ -1,7 +1,7 @@
 import useSWR from "swr";
 
-export const useData = (url) => {
-  const { data } = useSWR(url, (link) => fetch(link).then((res) => res.json()));
+export const useData = () => {
+  const { data } = useSWR('https://house-lydiahallie.vercel.app/api/listings', (link) => fetch(link).then((res) => res.json()));
 
   return [data]
 }

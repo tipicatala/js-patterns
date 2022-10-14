@@ -1,12 +1,12 @@
 import React from "react";
-import { useData } from '../hook/useData';
+import { useDataContext } from '../hook/useDataContext';
 
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 
-export default function withLoader(Element, url) {
+export default function withLoader(Element) {
   return (props) => {
-    const [data] = useData(url);
+    const { listingData } = useDataContext();
 
-    return data ? <Element {...props} data={data.listings} /> : <LoadingSpinner />;
+    return listingData ? <Element {...props} data={listingData.listings} /> : <LoadingSpinner />;
   };
 }

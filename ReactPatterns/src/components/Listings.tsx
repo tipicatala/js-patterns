@@ -15,5 +15,5 @@ export function ListingsLayout({ data }) {
   );
 }
 
-const Listings = withLoader(ListingsLayout, 'https://house-lydiahallie.vercel.app/api/listings');
+const Listings = withLoader(ListingsLayout);
 export default Listings;
